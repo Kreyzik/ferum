@@ -1,0 +1,1793 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ФЕРУМ — CRM</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 16px;
+            background: #0b0b0c;
+            color-scheme: dark;
+            scrollbar-gutter: stable;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #0b0b0c;
+            color: #f5f5f5;
+            font-family: "Inter", Arial, sans-serif;
+            line-height: 1.4;
+            overflow-x: hidden;
+        }
+
+        button,
+        input,
+        select {
+            font: inherit;
+        }
+
+        button {
+            border: 0;
+            cursor: pointer;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* =========================================================
+           VARIABLES
+        ========================================================= */
+
+        :root {
+            --bg: #0b0b0c;
+            --sidebar: #101011;
+            --surface: #141415;
+            --surface-2: #19191a;
+            --surface-3: #1d1d1f;
+
+            --border: #29292b;
+            --border-light: #333336;
+
+            --text: #f5f5f5;
+            --text-2: #c7c7c9;
+            --muted: #858589;
+
+            --red: #e50914;
+            --red-hover: #f01520;
+            --red-dark: #8e070e;
+
+            --green: #25c26e;
+            --yellow: #e7ad27;
+            --blue: #4d8dff;
+
+            --sidebar-width: 250px;
+            --header-height: 72px;
+
+            --radius: 12px;
+        }
+
+        /* =========================================================
+           APP LAYOUT
+        ========================================================= */
+
+        .app {
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            position: fixed;
+            z-index: 50;
+
+            top: 0;
+            left: 0;
+            bottom: 0;
+
+            width: var(--sidebar-width);
+
+            background: var(--sidebar);
+            border-right: 1px solid var(--border);
+
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main {
+            margin-left: var(--sidebar-width);
+            min-width: 0;
+            min-height: 100vh;
+        }
+
+        /* =========================================================
+           LOGO
+        ========================================================= */
+
+        .logo {
+            height: var(--header-height);
+
+            padding: 0 24px;
+
+            display: flex;
+            align-items: center;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo-mark {
+            width: 34px;
+            height: 34px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-right: 11px;
+
+            border-radius: 8px;
+
+            background: var(--red);
+
+            color: white;
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .logo-text {
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+        }
+
+        /* =========================================================
+           SIDEBAR
+        ========================================================= */
+
+        .sidebar-content {
+            padding: 20px 12px;
+            overflow-y: auto;
+        }
+
+        .menu-title {
+            padding: 0 12px 10px;
+
+            color: #646468;
+
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.3px;
+            text-transform: uppercase;
+        }
+
+        .nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .nav-item {
+            width: 100%;
+            min-height: 44px;
+
+            padding: 0 13px;
+
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            color: var(--text-2);
+
+            background: transparent;
+            border-radius: 9px;
+
+            text-align: left;
+            font-size: 13px;
+            font-weight: 500;
+
+            transition:
+                    background-color 0.15s ease,
+                    color 0.15s ease;
+        }
+
+        .nav-item:hover {
+            color: #fff;
+            background: #181819;
+        }
+
+        .nav-item.active {
+            color: #fff;
+            background: #242426;
+        }
+
+        .nav-icon {
+            width: 19px;
+
+            color: #77777b;
+
+            font-size: 15px;
+            text-align: center;
+        }
+
+        .nav-item.active .nav-icon {
+            color: var(--red);
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+            padding: 15px 12px;
+
+            border-top: 1px solid var(--border);
+        }
+
+        .user-mini {
+            padding: 10px;
+
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            border-radius: 9px;
+        }
+
+        .avatar {
+            width: 34px;
+            height: 34px;
+
+            flex: 0 0 34px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #27272a;
+
+            color: #fff;
+
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .user-info {
+            min-width: 0;
+        }
+
+        .user-name {
+            color: #eee;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .user-role {
+            margin-top: 2px;
+
+            color: var(--muted);
+
+            font-size: 10px;
+        }
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        .header {
+            height: var(--header-height);
+
+            position: sticky;
+            top: 0;
+            z-index: 40;
+
+            padding: 0 30px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            background: #0d0d0e;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-left {
+            min-width: 0;
+        }
+
+        .page-title {
+            color: #fff;
+
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .page-subtitle {
+            margin-top: 2px;
+
+            color: var(--muted);
+
+            font-size: 11px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icon-button {
+            width: 38px;
+            height: 38px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #aaa;
+
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 9px;
+
+            transition:
+                    color 0.15s ease,
+                    border-color 0.15s ease,
+                    background-color 0.15s ease;
+        }
+
+        .icon-button:hover {
+            color: white;
+            background: var(--surface-2);
+            border-color: var(--border-light);
+        }
+
+        /* =========================================================
+           CONTENT
+        ========================================================= */
+
+        .content {
+            width: 100%;
+            min-height: calc(100vh - var(--header-height));
+
+            padding: 30px;
+        }
+
+        .page {
+            width: 100%;
+            max-width: 1500px;
+            margin: 0 auto;
+        }
+
+        /* =========================================================
+           DASHBOARD
+        ========================================================= */
+
+        .welcome {
+            margin-bottom: 25px;
+        }
+
+        .welcome h1 {
+            font-size: 27px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .welcome p {
+            margin-top: 5px;
+
+            color: var(--muted);
+
+            font-size: 13px;
+        }
+
+        /* =========================================================
+           STATS
+        ========================================================= */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 14px;
+
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            min-width: 0;
+            min-height: 126px;
+
+            padding: 20px;
+
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        .stat-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .stat-title {
+            color: var(--muted);
+
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .stat-icon {
+            width: 32px;
+            height: 32px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 8px;
+
+            background: #1f1f21;
+
+            color: var(--red);
+
+            font-size: 13px;
+        }
+
+        .stat-value {
+            margin-top: 13px;
+
+            color: #fff;
+
+            font-size: 27px;
+            font-weight: 700;
+            letter-spacing: -0.6px;
+        }
+
+        .stat-bottom {
+            margin-top: 6px;
+
+            color: var(--muted);
+
+            font-size: 10px;
+        }
+
+        /* =========================================================
+           CARDS
+        ========================================================= */
+
+        .card {
+            min-width: 0;
+
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        .card-header {
+            min-height: 64px;
+
+            padding: 0 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .card-subtitle {
+            margin-top: 3px;
+
+            color: var(--muted);
+
+            font-size: 10px;
+        }
+
+        /* =========================================================
+           BUTTONS
+        ========================================================= */
+
+        .btn {
+            min-height: 38px;
+
+            padding: 0 15px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+
+            border-radius: 8px;
+
+            font-size: 12px;
+            font-weight: 600;
+
+            transition:
+                    background-color 0.15s ease,
+                    border-color 0.15s ease,
+                    color 0.15s ease;
+        }
+
+        .btn-primary {
+            color: #fff;
+            background: var(--red);
+        }
+
+        .btn-primary:hover {
+            background: var(--red-hover);
+        }
+
+        .btn-secondary {
+            color: #d0d0d2;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            color: #fff;
+            border-color: var(--border-light);
+        }
+
+        .btn-danger {
+            color: #fff;
+            background: #8d1118;
+        }
+
+        .btn-danger:hover {
+            background: #a9151d;
+        }
+
+        /* =========================================================
+           QUICK ACTIONS
+        ========================================================= */
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.4fr) minmax(300px, 0.6fr);
+            gap: 20px;
+        }
+
+        .quick-actions {
+            padding: 20px;
+
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .quick-action {
+            min-height: 80px;
+
+            padding: 15px;
+
+            display: flex;
+            align-items: center;
+            gap: 13px;
+
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+
+            text-align: left;
+
+            transition:
+                    border-color 0.15s ease,
+                    background-color 0.15s ease;
+        }
+
+        .quick-action:hover {
+            background: #1d1d1f;
+            border-color: #3a3a3d;
+        }
+
+        .quick-icon {
+            width: 38px;
+            height: 38px;
+
+            flex: 0 0 38px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #252527;
+            border-radius: 9px;
+
+            color: var(--red);
+        }
+
+        .quick-title {
+            color: #eee;
+
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .quick-text {
+            margin-top: 3px;
+
+            color: var(--muted);
+
+            font-size: 10px;
+        }
+
+        /* =========================================================
+           ACTIVITY
+        ========================================================= */
+
+        .activity-list {
+            padding: 8px 20px 16px;
+        }
+
+        .activity {
+            min-height: 60px;
+
+            display: flex;
+            align-items: center;
+            gap: 11px;
+
+            border-bottom: 1px solid #222224;
+        }
+
+        .activity:last-child {
+            border-bottom: 0;
+        }
+
+        .activity-dot {
+            width: 7px;
+            height: 7px;
+
+            flex: 0 0 7px;
+
+            border-radius: 50%;
+            background: var(--red);
+        }
+
+        .activity-text {
+            min-width: 0;
+
+            color: #d3d3d5;
+
+            font-size: 11px;
+        }
+
+        .activity-time {
+            margin-top: 2px;
+
+            color: var(--muted);
+
+            font-size: 9px;
+        }
+
+        /* =========================================================
+           CLIENTS PAGE
+        ========================================================= */
+
+        .clients-toolbar {
+            margin-bottom: 16px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .search-box {
+            position: relative;
+
+            width: 310px;
+        }
+
+        .search-box input {
+            width: 100%;
+            height: 40px;
+
+            padding: 0 13px 0 39px;
+
+            color: #eee;
+
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+
+            outline: none;
+
+            font-size: 12px;
+
+            transition: border-color 0.15s ease;
+        }
+
+        .search-box input:focus {
+            border-color: #47474a;
+        }
+
+        .search-icon {
+            position: absolute;
+
+            left: 13px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #777;
+
+            font-size: 13px;
+        }
+
+        .toolbar-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .select {
+            height: 40px;
+
+            padding: 0 12px;
+
+            color: #ccc;
+
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+
+            outline: none;
+
+            font-size: 11px;
+        }
+
+        .table-wrap {
+            width: 100%;
+
+            overflow-x: auto;
+
+            border-radius: var(--radius);
+        }
+
+        .table {
+            width: 100%;
+            min-width: 850px;
+
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        .table th {
+            height: 46px;
+
+            padding: 0 18px;
+
+            color: #77777b;
+
+            background: #111112;
+
+            border-bottom: 1px solid var(--border);
+
+            text-align: left;
+
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .table td {
+            height: 66px;
+
+            padding: 0 18px;
+
+            color: #d7d7d9;
+
+            border-bottom: 1px solid #222224;
+
+            font-size: 11px;
+
+            vertical-align: middle;
+        }
+
+        .table tbody tr {
+            transition: background-color 0.12s ease;
+        }
+
+        .table tbody tr:hover {
+            background: #181819;
+        }
+
+        .table tbody tr:last-child td {
+            border-bottom: 0;
+        }
+
+        .col-client {
+            width: 27%;
+        }
+
+        .col-phone {
+            width: 18%;
+        }
+
+        .col-sub {
+            width: 19%;
+        }
+
+        .col-date {
+            width: 14%;
+        }
+
+        .col-status {
+            width: 14%;
+        }
+
+        .col-action {
+            width: 8%;
+            text-align: right;
+        }
+
+        .client-cell {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .client-avatar {
+            width: 36px;
+            height: 36px;
+
+            flex: 0 0 36px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 8px;
+
+            background: #272729;
+
+            color: #ddd;
+
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .client-name {
+            color: #eee;
+
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .client-email {
+            margin-top: 2px;
+
+            color: #777;
+
+            font-size: 9px;
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+
+            min-height: 24px;
+
+            padding: 0 9px;
+
+            border-radius: 6px;
+
+            font-size: 9px;
+            font-weight: 600;
+        }
+
+        .status::before {
+            content: "";
+
+            width: 5px;
+            height: 5px;
+
+            border-radius: 50%;
+        }
+
+        .status.active {
+            color: #7ee5a7;
+            background: rgba(37, 194, 110, 0.09);
+        }
+
+        .status.active::before {
+            background: var(--green);
+        }
+
+        .status.expired {
+            color: #ff8f95;
+            background: rgba(229, 9, 20, 0.09);
+        }
+
+        .status.expired::before {
+            background: var(--red);
+        }
+
+        .status.trial {
+            color: #e8c979;
+            background: rgba(231, 173, 39, 0.09);
+        }
+
+        .status.trial::before {
+            background: var(--yellow);
+        }
+
+        .status.inactive {
+            color: #a3a3a7;
+            background: rgba(150, 150, 155, 0.08);
+        }
+
+        .status.inactive::before {
+            background: #777;
+        }
+
+        .row-action {
+            width: 30px;
+            height: 30px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #777;
+
+            background: transparent;
+            border-radius: 7px;
+        }
+
+        .row-action:hover {
+            color: #fff;
+            background: #252527;
+        }
+
+        /* =========================================================
+           PAGINATION
+        ========================================================= */
+
+        .pagination {
+            min-height: 58px;
+
+            padding: 0 18px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            border-top: 1px solid var(--border);
+        }
+
+        .pagination-info {
+            color: var(--muted);
+
+            font-size: 10px;
+        }
+
+        .pagination-buttons {
+            display: flex;
+            gap: 5px;
+        }
+
+        .page-btn {
+            width: 30px;
+            height: 30px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #999;
+
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+
+            font-size: 10px;
+        }
+
+        .page-btn.active {
+            color: #fff;
+            background: var(--red);
+            border-color: var(--red);
+        }
+
+        /* =========================================================
+           EMPTY PAGE
+        ========================================================= */
+
+        .placeholder {
+            min-height: 500px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+        }
+
+        .placeholder-icon {
+            width: 56px;
+            height: 56px;
+
+            margin: 0 auto 15px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: var(--red);
+
+            background: #1a1516;
+            border: 1px solid #302021;
+            border-radius: 12px;
+
+            font-size: 20px;
+        }
+
+        .placeholder h2 {
+            font-size: 17px;
+        }
+
+        .placeholder p {
+            margin-top: 6px;
+
+            color: var(--muted);
+
+            font-size: 11px;
+        }
+
+        /* =========================================================
+           MODAL
+        ========================================================= */
+
+        .modal-overlay {
+            position: fixed;
+            z-index: 100;
+
+            inset: 0;
+
+            display: none;
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            background: rgba(0, 0, 0, 0.72);
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal {
+            width: min(520px, 100%);
+            max-height: calc(100vh - 40px);
+
+            overflow-y: auto;
+
+            background: #151516;
+            border: 1px solid var(--border);
+            border-radius: 13px;
+
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-header {
+            min-height: 65px;
+
+            padding: 0 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .modal-title {
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .close {
+            width: 32px;
+            height: 32px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #888;
+
+            background: transparent;
+            border-radius: 7px;
+
+            font-size: 18px;
+        }
+
+        .close:hover {
+            color: white;
+            background: #242426;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .form-group {
+            min-width: 0;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-label {
+            display: block;
+
+            margin-bottom: 6px;
+
+            color: #aaa;
+
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .form-input {
+            width: 100%;
+            height: 40px;
+
+            padding: 0 11px;
+
+            color: #eee;
+
+            background: #101011;
+            border: 1px solid var(--border);
+            border-radius: 7px;
+
+            outline: none;
+
+            font-size: 11px;
+
+            transition: border-color 0.15s ease;
+        }
+
+        .form-input:focus {
+            border-color: #48484b;
+        }
+
+        .modal-footer {
+            padding: 15px 20px;
+
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+
+            border-top: 1px solid var(--border);
+        }
+
+        /* =========================================================
+           CLIENT DRAWER
+        ========================================================= */
+
+        .drawer-overlay {
+            position: fixed;
+            z-index: 90;
+
+            inset: 0;
+
+            display: none;
+
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .drawer-overlay.show {
+            display: block;
+        }
+
+        .drawer {
+            position: fixed;
+            z-index: 91;
+
+            top: 0;
+            right: 0;
+            bottom: 0;
+
+            width: min(430px, 100%);
+
+            overflow-y: auto;
+
+            background: #141415;
+            border-left: 1px solid var(--border);
+
+            box-shadow: -20px 0 60px rgba(0, 0, 0, 0.35);
+        }
+
+        .drawer-header {
+            min-height: 72px;
+
+            padding: 0 22px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .drawer-body {
+            padding: 24px;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+
+            padding-bottom: 24px;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .profile-avatar {
+            width: 55px;
+            height: 55px;
+
+            flex: 0 0 55px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background: #29292b;
+
+            color: white;
+
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .profile-name {
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        .profile-phone {
+            margin-top: 3px;
+
+            color: var(--muted);
+
+            font-size: 10px;
+        }
+
+        .detail-section {
+            padding: 20px 0;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .detail-title {
+            margin-bottom: 14px;
+
+            color: #777;
+
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .detail-row {
+            min-height: 34px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .detail-label {
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .detail-value {
+            color: #eee;
+            font-size: 10px;
+            font-weight: 500;
+            text-align: right;
+        }
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 1100px) {
+            :root {
+                --sidebar-width: 220px;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 800px) {
+            :root {
+                --sidebar-width: 0px;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .main {
+                margin-left: 0;
+            }
+
+            .header {
+                padding: 0 18px;
+            }
+
+            .content {
+                padding: 20px 15px;
+            }
+
+            .clients-toolbar {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+            .toolbar-right {
+                width: 100%;
+            }
+
+            .select {
+                flex: 1;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                height: 64px;
+            }
+
+            .content {
+                min-height: calc(100vh - 64px);
+            }
+
+            .welcome h1 {
+                font-size: 23px;
+            }
+        }
+
+        /* =========================================================
+   CLIENT ACTIONS
+========================================================= */
+
+        .client-actions {
+            padding-top: 20px;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+
+        /* =========================================================
+           DELETE CLIENT
+        ========================================================= */
+
+        .delete-client-section {
+            margin-top: 25px;
+            padding-top: 20px;
+
+            border-top: 1px solid var(--border);
+        }
+
+        .delete-warning {
+            margin-bottom: 10px;
+
+            color: #777;
+
+            font-size: 9px;
+        }
+
+        .delete-client-btn {
+            width: 100%;
+        }
+
+        .btn-danger {
+            color: #ffb4b8;
+
+            background: rgba(229, 9, 20, 0.08);
+
+            border: 1px solid rgba(229, 9, 20, 0.25);
+        }
+
+        .btn-danger:hover {
+            color: #fff;
+
+            background: #a9151d;
+
+            border-color: #a9151d;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-mark">Ф</div>
+            <div class="logo-text">ФЕРУМ</div>
+        </div>
+
+        <div class="sidebar-content">
+
+            <div class="menu-title">Главное</div>
+
+            <nav class="nav">
+
+                <button class="nav-item active" data-page="dashboard">
+                    <span class="nav-icon">▦</span>
+                    <span>Главная</span>
+                </button>
+
+                <button class="nav-item" data-page="clients">
+                    <span class="nav-icon">♙</span>
+                    <span>Клиенты</span>
+                </button>
+
+                <button class="nav-item" data-page="subscriptions">
+                    <span class="nav-icon">▣</span>
+                    <span>Абонементы</span>
+                </button>
+
+                <button class="nav-item" data-page="payments">
+                    <span class="nav-icon">₴</span>
+                    <span>Платежи</span>
+                </button>
+
+                <button class="nav-item" data-page="visits">
+                    <span class="nav-icon">↗</span>
+                    <span>Посещения</span>
+                </button>
+
+            </nav>
+
+            <div class="menu-title" style="margin-top:28px;">
+                Управление
+            </div>
+
+            <nav class="nav">
+
+                <button class="nav-item" data-page="training">
+                    <span class="nav-icon">◆</span>
+                    <span>Тренировки</span>
+                </button>
+
+                <button class="nav-item" data-page="trainers">
+                    <span class="nav-icon">♟</span>
+                    <span>Тренеры</span>
+                </button>
+
+                <button class="nav-item" data-page="reports">
+                    <span class="nav-icon">▤</span>
+                    <span>Отчёты</span>
+                </button>
+
+                <button class="nav-item" data-page="settings">
+                    <span class="nav-icon">⚙</span>
+                    <span>Настройки</span>
+                </button>
+
+            </nav>
+
+        </div>
+
+        <div class="sidebar-bottom">
+
+            <div class="user-mini">
+                <div class="avatar">АД</div>
+
+                <div class="user-info">
+                    <div class="user-name">Администратор</div>
+                    <div class="user-role">Управление залом</div>
+                </div>
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="main">
+
+        <header class="header">
+
+            <div class="header-left">
+
+                <div class="page-title" id="pageTitle">
+                    Главная
+                </div>
+
+                <div class="page-subtitle" id="pageSubtitle">
+                    Панель управления ФЕРУМ
+                </div>
+
+            </div>
+
+            <div class="header-right">
+
+                <button class="icon-button" title="Уведомления">
+                    ♢
+                </button>
+
+                <button
+                        class="btn btn-primary"
+                        onclick="openAddClient()"
+                >
+                    + Добавить клиента
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <section class="content">
+
+            <div class="page" id="pageContainer"></div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- =========================================================
+     MODAL ADD CLIENT
+========================================================= -->
+
+<div class="modal-overlay" id="addClientModal">
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <div class="modal-title">
+                Новый клиент
+            </div>
+
+            <button
+                    class="close"
+                    onclick="closeAddClient()"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <form id="clientForm">
+
+            <div class="modal-body">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            Имя
+                        </label>
+
+                        <input
+                                class="form-input"
+                                id="firstName"
+                                placeholder="Александр"
+                                required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            Фамилия
+                        </label>
+
+                        <input
+                                class="form-input"
+                                id="lastName"
+                                placeholder="Иванов"
+                                required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            Телефон
+                        </label>
+
+                        <input
+                                class="form-input"
+                                id="phone"
+                                placeholder="+380 XX XXX XX XX"
+                                required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            Email
+                        </label>
+
+                        <input
+                                class="form-input"
+                                id="email"
+                                type="email"
+                                placeholder="client@email.com"
+                        >
+                    </div>
+
+                    <div class="form-group full">
+                        <label class="form-label">
+                            Абонемент
+                        </label>
+
+                        <select
+                                class="form-input"
+                                id="subscription"
+                        >
+                            <option value="Без абонемента">
+                                Без абонемента
+                            </option>
+
+                            <option value="Безлимит — 30 дней">
+                                Безлимит — 30 дней
+                            </option>
+
+                            <option value="Безлимит — 90 дней">
+                                Безлимит — 90 дней
+                            </option>
+
+                            <option value="8 тренировок">
+                                8 тренировок
+                            </option>
+
+                            <option value="12 тренировок">
+                                12 тренировок
+                            </option>
+                        </select>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                        type="button"
+                        class="btn btn-secondary"
+                        onclick="closeAddClient()"
+                >
+                    Отмена
+                </button>
+
+                <button
+                        type="submit"
+                        class="btn btn-primary"
+                >
+                    Создать клиента
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     CLIENT DRAWER
+========================================================= -->
+
+<div
+        class="drawer-overlay"
+        id="drawerOverlay"
+        onclick="closeDrawer()"
+></div>
+
+<aside class="drawer" id="clientDrawer">
+
+    <div class="drawer-header">
+
+        <strong>
+            Клиент
+        </strong>
+
+        <button
+                class="close"
+                onclick="closeDrawer()"
+        >
+            ×
+        </button>
+
+    </div>
+
+    <div class="drawer-body" id="drawerContent"></div>
+
+</aside>
+
+
+<script src="js/script.js"></script>
+</body>
+</html>

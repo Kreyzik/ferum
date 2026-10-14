@@ -1,0 +1,789 @@
+/* =========================================
+RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    background: #050708;
+    color: #ffffff;
+
+    font-family: "Inter", sans-serif;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font-family: inherit;
+}
+
+
+body {
+    background-color: #0B0B0B;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+}
+/* Custom hero background styling with overlay */
+.hero-bg {
+    background: linear-gradient(90deg, rgba(11,11,11,0.95) 0%, rgba(11,11,11,0.85) 50%, rgba(11,11,11,0.4) 100%),
+    url('../img/home/01.jpeg');
+    background-size: cover;
+    background-position: right;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #0b0b0b;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Стили третьего блока */
+.why-choose-section {
+    padding: 60px 0;
+    background-color: #0b0b0b;
+}
+
+.why-choose-wrapper {
+    background-color: #121212;
+    border: 1px solid #222;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px 50px;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.why-choose-title h2 {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+}
+
+.why-choose-grid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: 1;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.why-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+    min-width: 130px;
+    position: relative;
+}
+
+/* Вертикальные разделители между элементами */
+.why-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 45px;
+    background-color: #2a2a2a;
+}
+
+.why-icon {
+    color: #ff002b; /* Фирменный красный цвет иконок */
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.why-item:hover .why-icon {
+    transform: scale(1.1);
+}
+
+.why-item p {
+    font-size: 14px;
+    font-weight: 600;
+    color: #e0e0e0;
+    line-height: 1.3;
+    max-width: 120px;
+}
+
+/* Адаптивность для мобильных устройств */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.why-choose-wrapper {
+    animation: fadeIn 0.8s ease-out;
+}
+
+@media (max-width: 992px) {
+    .why-choose-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 30px;
+    }
+
+    .why-choose-grid {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 30px;
+    }
+
+    .why-item:not(:last-child)::after {
+        display: none; /* Убираем разделители на экранах поменьше */
+    }
+
+    .why-item {
+        align-items: flex-start;
+        text-align: left;
+    }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #0b0b0b;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Стили четвертого блока (Про нас) */
+.about-section {
+    padding: 60px 0;
+    background-color: #0b0b0b;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 50px;
+    align-items: center;
+    background-color: #121212;
+    border: 1px solid #222;
+    border-radius: 12px;
+    padding: 40px;
+}
+
+.about-image-wrapper {
+    width: 100%;
+    height: 380px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+.about-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.85);
+    transition: transform 0.5s ease;
+}
+
+.about-image-wrapper:hover .about-img {
+    transform: scale(1.03);
+}
+
+.section-subtitle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #ffffff;
+    margin-bottom: 15s px;
+    text-transform: uppercase;
+}
+
+.red-line {
+    display: inline-block;
+    width: 24px;
+    height: 2px;
+    background-color: #ff002b;
+}
+
+.about-title {
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.25;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.about-description {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #b0b0b0;
+    margin-bottom: 35px;
+}
+
+.about-stats {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-number {
+    font-size: 32px;
+    font-weight: 900;
+    color: #ff002b; /* Фирменный красный акцент */
+    line-height: 1.1;
+    margin-bottom: 6px;
+}
+
+.stat-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #999999;
+    line-height: 1.3;
+    max-width: 110px;
+}
+
+/* Адаптивность для мобильных и планшетов */
+@media (max-width: 992px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        padding: 25px;
+        gap: 30px;
+    }
+
+    .about-image-wrapper {
+        height: 280px;
+    }
+
+    .about-title {
+        font-size: 26px;
+    }
+}
+
+/* Основной блок секции */
+.ready-section {
+    width: 100%;
+    padding: 50px 0px;
+    /* Затемнение фона: полупрозрачный градиент поверх картинки */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url("../img/023.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+}
+
+/* Контейнер */
+.ready-container {
+
+
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    border-radius: 12px;
+    justify-content: space-between;
+    overflow: hidden;
+
+
+}
+
+
+.ready-bg-crop {
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left center;
+}
+
+/* Центральная текстовая часть */
+.ready-content {
+    padding: 30px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.ready-subtitle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ff003c;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.red-dash {
+    display: inline-block;
+    width: 20px;
+    height: 2px;
+    background-color: #ff003c;
+}
+
+.ready-title {
+    font-size: 26px;
+    font-weight: 900;
+    line-height: 1.2;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    color: #ffffff;
+}
+
+.ready-desc {
+    font-size: 14px;
+    color: #a0a0a0;
+    margin-bottom: 24px;
+    line-height: 1.5;
+
+}
+
+.ready-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #ff003c;
+    color: #ffffff;
+    border: none;
+    padding: 14px 28px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: fit-content;
+}
+
+.ready-btn:hover {
+    background-color: #e00035;
+    transform: translateY(-2px);
+}
+
+/* Правая колонка с иконками */
+.ready-features {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-left: 1px solid rgba(255, 255, 255, 0.06);
+    height: 100%;
+    justify-content: center;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.feature-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(255, 0, 60, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.feature-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: #e0e0e0;
+}
+
+/* ================= АДАПТИВНОСТЬ ================= */
+
+@media(max-width:750px){
+    .ready-container {
+        flex-direction: column;
+    }
+
+    .ready-features {
+        flex-direction: row;
+
+        justify-content: space-between;
+
+    }
+
+
+}
+
+@media(max-width:585px){
+    .feature-text {
+        font-size: 12px;
+
+    }
+}
+
+@media(max-width:430px){
+    .ready-features {
+        flex-direction: column;
+        border: 0px solid;
+    }
+}
+
+
+/* ================= СТИЛИ МОДАЛЬНОГО ОКНА ================= */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); /* Затемнение фона */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    padding: 15px;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: #1a1a1a;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 30px;
+    width: 100%;
+    max-width: 450px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #a0a0a0;
+    font-size: 28px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.modal-close:hover {
+    color: #ff003c;
+}
+
+.modal-title {
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.modal-subtitle {
+    font-size: 13px;
+    color: #a0a0a0;
+    margin-bottom: 20px;
+}
+
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-group label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #ccc;
+    text-transform: uppercase;
+}
+
+.form-group input,
+.form-group select {
+    background-color: #262626;
+    border: 1px solid #3d3d3d;
+    border-radius: 6px;
+    padding: 12px 15px;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+    font-family: 'Montserrat', sans-serif;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #ff003c;
+}
+
+.modal-submit-btn {
+    margin-top: 10px;
+    background-color: #ff003c;
+    color: #ffffff;
+    border: none;
+    padding: 14px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.modal-submit-btn:hover {
+    background-color: #e00035;
+}
+
+/* ================= АДАПТИВНОСТЬ ================= */
+@media(max-width:750px){
+    .ready-container {
+        flex-direction: column;
+    }
+    .ready-features {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+@media(max-width:585px){
+    .feature-text {
+        font-size: 12px;
+    }
+}
+
+@media(max-width:430px){
+    .ready-features {
+        flex-direction: column;
+        border: 0px solid;
+    }
+    .modal-content {
+        padding: 20px;
+    }
+}
+
+/* МОДАЛЬНОЕ ОКНО */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    padding: 15px;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: #1a1a1a;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 30px;
+    width: 100%;
+    max-width: 450px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #a0a0a0;
+    font-size: 28px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.modal-close:hover {
+    color: #ff003c;
+}
+
+.liqpay-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.liqpay-logo {
+    background-color: #79c142; /* Фирменный зеленый цвет LiqPay */
+    color: #fff;
+    font-weight: 800;
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.modal-title {
+    font-size: 18px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.modal-subtitle {
+    font-size: 13px;
+    color: #a0a0a0;
+    margin-bottom: 20px;
+}
+
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-group label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #ccc;
+    text-transform: uppercase;
+}
+
+.form-group input,
+.form-group select {
+    background-color: #262626;
+    border: 1px solid #3d3d3d;
+    border-radius: 6px;
+    padding: 12px 15px;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+    font-family: 'Montserrat', sans-serif;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #79c142;
+}
+
+.payment-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #262626;
+    padding: 12px 15px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+#totalPrice {
+    color: #79c142;
+}
+
+.modal-submit-btn {
+    margin-top: 5px;
+    background-color: #79c142; /* Зеленая кнопка под стиль LiqPay */
+    color: #ffffff;
+    border: none;
+    padding: 14px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.modal-submit-btn:hover {
+    background-color: #68a837;
+}

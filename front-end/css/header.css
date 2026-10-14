@@ -1,0 +1,482 @@
+
+
+
+/* =========================================
+    HEADER
+========================================= */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    width: 100%;
+
+    background: rgba(5, 7, 8, 0.95);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+
+/* =========================================
+    CONTAINER
+========================================= */
+
+.header__container {
+    width: min(1180px, calc(100% - 40px));
+    min-height: 72px;
+
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+
+    gap: 30px;
+}
+
+
+/* =========================================
+    LOGO
+========================================= */
+
+.logo {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    flex-shrink: 0;
+}
+
+
+.logo__emblem {
+    display: block;
+
+    width: 47px;
+    height: 53px;
+
+    flex-shrink: 0;
+}
+
+
+.logo__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.logo__text strong {
+    color: #ffffff;
+
+    font-size: 27px;
+    line-height: 1;
+
+    font-weight: 900;
+
+    letter-spacing: -1.2px;
+}
+
+
+.logo__text small {
+    margin-top: 5px;
+
+    color: #85898d;
+
+    font-size: 7px;
+    line-height: 1;
+
+    font-weight: 600;
+
+    letter-spacing: 0.9px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================
+    NAVIGATION
+========================================= */
+
+.navigation {
+    margin-left: auto;
+
+    display: flex;
+    align-items: center;
+
+    gap: 30px;
+}
+
+
+.navigation__link {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    height: 72px;
+
+    color: #aeb2b6;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    transition: color 0.25s ease;
+}
+
+
+.navigation__link:hover {
+    color: #ffffff;
+}
+
+
+/* Червона лінія */
+
+.navigation__link::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 2px;
+
+    background: #ed1c24;
+
+    transform: scaleX(0);
+
+    transition: transform 0.25s ease;
+}
+
+
+.navigation__link:hover::after,
+.navigation__link--active::after {
+    transform: scaleX(1);
+}
+
+
+.navigation__link--active {
+    color: #ffffff;
+}
+
+
+/* =========================================
+    BUTTON
+========================================= */
+
+.header__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 112px;
+    height: 42px;
+
+    padding: 0 20px;
+
+    border-radius: 6px;
+
+    background: #ed1c24;
+
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    transition:
+            background 0.25s ease,
+            transform 0.25s ease,
+            box-shadow 0.25s ease;
+}
+
+
+.header__button:hover {
+    background: #ff2931;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+            0 8px 25px rgba(237, 28, 36, 0.25);
+}
+
+
+.header__button:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================
+    BURGER
+========================================= */
+
+.burger {
+    display: none;
+
+    width: 44px;
+    height: 44px;
+
+    padding: 8px;
+
+    border: 0;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 5px;
+}
+
+
+.burger span {
+    display: block;
+
+    width: 25px;
+    height: 2px;
+
+    border-radius: 2px;
+
+    background: #ffffff;
+
+    transition:
+            transform 0.25s ease,
+            opacity 0.25s ease;
+}
+
+
+/* =========================================
+    BURGER ACTIVE
+========================================= */
+
+.burger.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.burger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+
+/* =========================================
+    TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .header__container {
+        width: min(100% - 30px, 1180px);
+
+        gap: 20px;
+    }
+
+
+    .navigation {
+        gap: 20px;
+    }
+
+
+    .navigation__link {
+        font-size: 12px;
+    }
+
+
+    .header__button {
+        min-width: 100px;
+
+        padding: 0 15px;
+    }
+}
+
+
+/* =========================================
+    MOBILE
+========================================= */
+
+@media (max-width: 760px) {
+
+    .header {
+        position: sticky;
+    }
+
+
+    .header__container {
+        width: calc(100% - 24px);
+
+        min-height: 68px;
+
+        gap: 10px;
+    }
+
+
+    /* Логотип */
+
+    .logo {
+        gap: 8px;
+    }
+
+
+    .logo__emblem {
+        width: 40px;
+        height: 46px;
+    }
+
+
+    .logo__text strong {
+        font-size: 23px;
+    }
+
+
+    .logo__text small {
+        font-size: 6px;
+
+        letter-spacing: 0.6px;
+    }
+
+
+    /* Навігація */
+
+    .navigation {
+        position: absolute;
+
+        top: 68px;
+        left: 0;
+
+        width: 100%;
+
+        padding: 8px 15px 18px;
+
+        margin: 0;
+
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+
+        gap: 0;
+
+        backgro</style>und: rgba(5, 7, 8, 0.98);
+
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+        opacity: 0;
+        visibility: hidden;
+
+        transform: translateY(-10px);
+
+        transition:
+                opacity 0.25s ease,
+                visibility 0.25s ease,
+                transform 0.25s ease;
+    }
+
+
+    .navigation.active {
+        opacity: 1;
+        visibility: visible;
+
+        transform: translateY(0);
+    }
+
+
+    .navigation__link {
+        height: 52px;
+
+        padding: 0 12px;
+
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+        font-size: 14px;
+    }
+
+
+    .navigation__link:last-child {
+        border-bottom: none;
+    }
+
+
+    /* Вертикальний червоний індикатор */
+
+    .navigation__link::after {
+        left: 0;
+        right: auto;
+
+        top: 16px;
+        bottom: auto;
+
+        width: 3px;
+        height: 20px;
+
+        transform: scaleY(0);
+    }
+
+
+    .navigation__link:hover::after,
+    .navigation__link--active::after {
+        transform: scaleY(1);
+    }
+
+
+    .navigation__link--active {
+        color: #ed1c24;
+    }
+
+
+    /* Ховаємо desktop кнопку */
+
+    .header__button {
+        display: none;
+    }
+
+
+    /* Показуємо burger */
+
+    .burger {
+        display: flex;
+
+        margin-left: auto;
+    }
+}
+
+
+/* =========================================
+    SMALL MOBILE
+========================================= */
+
+@media (max-width: 420px) {
+
+    .header__container {
+        width: calc(100% - 18px);
+    }
+
+
+    .logo__emblem {
+        width: 37px;
+        height: 43px;
+    }
+
+
+    .logo__text strong {
+        font-size: 21px;
+    }
+
+
+    .logo__text small {
+        font-size: 5px;
+
+        letter-spacing: 0.5px;
+    }
+}
+

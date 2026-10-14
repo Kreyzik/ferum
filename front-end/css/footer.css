@@ -1,0 +1,406 @@
+.footer {
+    background:
+            radial-gradient(
+                    circle at 50% 0%,
+                    rgba(255, 20, 35, 0.035),
+                    transparent 45%
+            ),
+            #03080c;
+
+    color: #fff;
+    border-top: 1px solid rgba(255,255,255,0.04);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.footer-container {
+    width: min(1420px, calc(100% - 80px));
+    margin: 0 auto;
+}
+
+/* =========================
+   MAIN FOOTER
+========================= */
+
+.footer-main {
+    min-height: 150px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 0;
+
+    border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+
+/* =========================
+   BRAND
+========================= */
+
+.footer-brand {
+    width: 220px;
+    flex-shrink: 0;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.logo-icon {
+    width: 48px;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #fff;
+    font-size: 42px;
+
+    position: relative;
+}
+
+.logo-icon::before {
+    content: "";
+
+    position: absolute;
+
+    width: 22px;
+    height: 60px;
+
+    left: 13px;
+    top: 0;
+
+    border-left: 4px solid #ff1626;
+    border-radius: 50%;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-text strong {
+    font-size: 27px;
+    line-height: 1;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+.logo-text small {
+    margin-top: 6px;
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: .7px;
+    color: #b8c2cb;
+    white-space: nowrap;
+}
+
+/* =========================
+   FOOTER ITEMS
+========================= */
+
+.footer-item {
+    min-height: 65px;
+
+    padding: 0 25px;
+
+    border-left: 1px solid rgba(255,255,255,0.08);
+
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    flex: 1;
+}
+
+.footer-icon {
+    width: 29px;
+    min-width: 29px;
+    height: 29px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-icon svg {
+    width: 27px;
+    height: 27px;
+
+    fill: none;
+    stroke: #ff1426;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.footer-item span {
+    display: block;
+
+    color: #d9e1e8;
+
+    font-size: 12px;
+    font-weight: 500;
+
+    margin-bottom: 5px;
+}
+
+.footer-item p,
+.footer-item a {
+    display: block;
+
+    color: #7e8993;
+
+    font-size: 10px;
+    line-height: 1.5;
+
+    text-decoration: none;
+    margin: 0;
+}
+
+.footer-item a {
+    color: #dce3e9;
+    transition: .25s;
+}
+
+.footer-item a:hover {
+    color: #ff1728;
+}
+
+/* =========================
+   TELEGRAM
+========================= */
+
+.footer-telegram {
+    padding-left: 25px;
+}
+
+.telegram-btn {
+    height: 43px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 0 19px;
+
+    border: 1px solid #ff1426;
+    border-radius: 24px;
+
+    color: #ff1426;
+
+    text-decoration: none;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    transition: .25s;
+}
+
+.telegram-btn svg {
+    width: 19px;
+    height: 19px;
+
+    fill: #ff1426;
+
+    transition: .25s;
+}
+
+.telegram-btn:hover {
+    background: #ff1426;
+    color: #fff;
+
+    box-shadow: 0 0 25px rgba(255, 20, 38, .2);
+}
+
+.telegram-btn:hover svg {
+    fill: #fff;
+}
+
+/* =========================
+   BOTTOM
+========================= */
+
+.footer-bottom {
+    min-height: 65px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    color: #65717b;
+}
+
+.copyright {
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+.footer-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 9px;
+}
+
+.footer-links a {
+    color: #65717b;
+    text-decoration: none;
+
+    transition: .2s;
+}
+
+.footer-links a:hover {
+    color: #fff;
+}
+
+.footer-links span {
+    color: #3e464d;
+}
+
+.social-links {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.social-links a {
+    width: 20px;
+    height: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-links svg {
+    width: 17px;
+    height: 17px;
+
+    fill: none;
+    stroke: #87919a;
+    stroke-width: 1.7;
+
+    transition: .2s;
+}
+
+.social-links a:hover svg {
+    stroke: #ff1426;
+}
+
+.social-links a:last-child svg {
+    fill: #87919a;
+    stroke: none;
+}
+
+.social-links a:last-child:hover svg {
+    fill: #ff1426;
+}
+
+/* YouTube play */
+.youtube-play {
+    fill: #03080c !important;
+    stroke: none !important;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1150px) {
+
+    .footer-container {
+        width: min(100% - 40px, 1000px);
+    }
+
+    .footer-main {
+        flex-wrap: wrap;
+        padding: 30px 0;
+        gap: 25px 0;
+    }
+
+    .footer-brand {
+        width: 100%;
+    }
+
+    .footer-item {
+        flex: 1 1 33%;
+        border-left: none;
+        padding: 0 20px 0 0;
+    }
+
+    .footer-telegram {
+        padding-left: 0;
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .footer-container {
+        width: calc(100% - 30px);
+    }
+
+    .footer-main {
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+        gap: 22px;
+
+        padding: 35px 0;
+    }
+
+    .footer-brand {
+        width: 100%;
+
+        padding-bottom: 10px;
+    }
+
+    .footer-item {
+        min-height: auto;
+
+        padding: 0;
+
+        border: none;
+    }
+
+    .footer-telegram {
+        padding: 5px 0 0;
+    }
+
+    .telegram-btn {
+        width: 100%;
+    }
+
+    .footer-bottom {
+        padding: 22px 0;
+
+        flex-direction: column;
+        align-items: flex-start;
+
+        gap: 15px;
+    }
+
+    .footer-links {
+        flex-wrap: wrap;
+    }
+
+    .social-links {
+        align-self: flex-end;
+    }
+}
